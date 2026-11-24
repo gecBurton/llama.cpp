@@ -178,9 +178,4 @@ class ClefOmniModel(_ClefHeadMixin, Qwen3OmniMoeTextModel):
 
 @ModelBase.register("ClefOmniModel")
 class ClefOmniMmprojModel(Qwen3OmniMmprojModel):
-    @classmethod
-    def filter_tensors(cls, item):
-        # narrow artifact format: the deepstack merger tensors stay out of the omni mmproj
-        if ".merger_list." in item[0]:
-            return None
-        return super().filter_tensors(item)
+    pass

@@ -380,7 +380,12 @@ class Qwen3OmniMoeTextModel(Qwen3VLMoeTextModel):
 
     def set_gguf_parameters(self):
         super().set_gguf_parameters()
-        self.gguf_writer.add_num_deepstack_layers(0)
+        if "thinker_config" in self.hparams:
+            vision_config = self.hparams["thinker_config"].get("vision_config", {})
+        else:
+            vision_config = self.hparams.get("vision_config", {})
+        deepstack_layer_num = len(vision_config.get("deepstack_visual_indexes", []))
+        self.gguf_writer.add_num_deepstack_layers(deepstack_layer_num)
 
 
 @ModelBase.register("Qwen3ASRForConditionalGeneration")
