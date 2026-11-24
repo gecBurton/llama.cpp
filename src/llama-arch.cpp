@@ -39,6 +39,7 @@ static const std::map<llm_arch, const char *> LLM_ARCH_NAMES = {
     { LLM_ARCH_FLINT,            "flint"            },
     { LLM_ARCH_QWEN3MOE,         "qwen3moe"         },
     { LLM_ARCH_CLOVER_MOE,       "clover_moe"       },
+    { LLM_ARCH_CLEF_OMNI,        "clef-omni"        },
     { LLM_ARCH_QWEN3NEXT,        "qwen3next"        },
     { LLM_ARCH_QWEN3VL,          "qwen3vl"          },
     { LLM_ARCH_QWEN3VLMOE,       "qwen3vlmoe"       },
@@ -1613,6 +1614,7 @@ bool llama_arch_supports_save(llm_arch arch) {
         case LLM_ARCH_APERTUS:
         case LLM_ARCH_STEP35:
         case LLM_ARCH_CLEF: // the head tensors are not saved
+        case LLM_ARCH_CLEF_OMNI: // the head tensors are not saved
         case LLM_ARCH_INKLING2_LOOP: // the loop tensors are not saved and the cache slots are expanded at load
         case LLM_ARCH_VLLM_DECISION2:
             return false;
